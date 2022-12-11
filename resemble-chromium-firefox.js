@@ -9,7 +9,7 @@ const pagelist = p.pagelist;
 const color = p.bodyColor;
 
 pagelist.forEach((item) => {
-    let filename = item.replace(/(http:\/\/|https:\/\/)/g, "").replace(/\/?$/, "").replace(/\//g, "_").replace(/\./g, "-");
+    let filename =  item.replace(/(http:\/\/|https:\/\/)/g,"").replace(/\/?$/,"").replace(/\//g, "_").replace(/\./g, "-").replace(/:/g, "");
 
     // 比較したい画像のパスを指定
     const image1 = fs.readFileSync("./screenshots/chromium-" + filename + ".png");

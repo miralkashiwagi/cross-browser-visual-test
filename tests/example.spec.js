@@ -13,7 +13,7 @@ test.use({
 
 test.describe('multiple pages test',()=>{
   pagelist.forEach((item)=>{
-    let filename =  item.replace(/(http:\/\/|https:\/\/)/g,"").replace(/\/?$/,"").replace(/\//g, "_").replace(/\./g, "-");
+    let filename =  item.replace(/(http:\/\/|https:\/\/)/g,"").replace(/\/?$/,"").replace(/\//g, "_").replace(/\./g, "-").replace(/:/g, "");
     test(`${filename} test`, async ({ page }) => {
       const browserName = page.context().browser().browserType().name()
 
