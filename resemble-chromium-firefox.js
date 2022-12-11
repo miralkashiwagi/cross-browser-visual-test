@@ -3,15 +3,10 @@ const resembleChromiumFirefox = require('resemblejs');
 const p =require('./package.json')
 
 const dir = "screenshots/"
-var pagelist = p.pagelist;
+const pagelist = p.pagelist;
 
 //本文テキストの色を除外
-const color = {
-    r: 17,
-    g: 17,
-    b: 17,
-    a: 255
-};
+const color = p.bodyColor;
 
 pagelist.forEach((item) => {
     let filename = item.replace(/(http:\/\/|https:\/\/)/g, "").replace(/\/?$/, "").replace(/\//g, "_").replace(/\./g, "-");
@@ -24,7 +19,7 @@ pagelist.forEach((item) => {
     resembleChromiumFirefox(image1)
         .compareTo(image2)
         .ignoreAntialiasing()
-        .outputSettings({ ignoreAreasColoredWith: color })
+        .outputSettings({ ignoreAreasColoredWith: color,largeImageThreshold:0 })
         .onComplete(data => {
             if (data.misMatchPercentage >= 0.5) {
                 console.log(filename);

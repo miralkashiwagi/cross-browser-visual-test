@@ -20,6 +20,18 @@ npm run cap
 ```
 
 ## 比較の実行
+
+package.jsonのbodyColorにbodyのcolorを入れておくと判定がましになる気がする
+
+```json
+"bodyColor": {
+    "r": 32,
+    "g": 33,
+    "b": 34,
+    "a": 255
+}
+```
+
 ### chromium(chrome) と webkit(safari)
 ```
 npm run test:webkit
