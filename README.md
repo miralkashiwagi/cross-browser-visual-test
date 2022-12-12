@@ -3,7 +3,7 @@
 npm install
 ```
 
-# 使い方1 クロスブラウザビジュアルテスト
+# 使い方 クロスブラウザビジュアルテスト
 ## ページリスト作成
 package.jsonのpagelistにクロスブラウザテストしたいURLを記入
 
@@ -16,12 +16,13 @@ package.jsonのpagelistにクロスブラウザテストしたいURLを記入
 
 ## スクリーンショットの取得
 ```
-npm run cap
+npm run capture
 ```
 
 ## 比較の実行
 
-package.jsonのbodyColorにbodyのcolorを入れておくと判定がましになる気がする
+package.jsonのbodyColorにbodyのcolorを入れておくと判定がましになる気がする。  
+正確にはこれは「差があっても無視する色」の選択。
 
 ```json
 "bodyColor": {
@@ -46,6 +47,3 @@ npm run test:firefox
 ```
 
 出力と diff_image を確認してください。
-
-# 使い方2 二つのURLの比較
-TBD

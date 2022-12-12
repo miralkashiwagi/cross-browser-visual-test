@@ -26,7 +26,7 @@ test.describe('multiple pages test',()=>{
 
       //ページを上までスクロール
       await page.evaluate(() => window.scroll({top: 0, behavior: 'smooth'}));
-      await page.waitForTimeout(2000); // 1秒待機
+      await page.waitForTimeout(2000); // 2秒待機
 
       //スクリーンショットをとる
       await page.screenshot({ path:dir+ browserName+"-" + filename+".png", fullPage: true });

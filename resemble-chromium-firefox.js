@@ -1,9 +1,13 @@
 const fs = require('fs');
-const resembleChromiumFirefox = require('resemblejs');
+const resemble = require('resemblejs');
 const p =require('./package.json')
 
 const dir = "screenshots/"
 const pagelist = p.pagelist;
+
+//差分検出につかう「misMatchPercentage」の値
+//最大100まで設定可能だが、精度的には0.1～1のあいだがよさそう
+const percentage = 0.5;
 
 //本文テキストの色を除外
 const color = p.bodyColor;
@@ -16,14 +20,14 @@ pagelist.forEach((item) => {
     const image2 = fs.readFileSync("./screenshots/firefox-" + filename + ".png");
 
 
-    resembleChromiumFirefox(image1)
+    resemble(image1)
         .compareTo(image2)
         .ignoreAntialiasing()
         .outputSettings({ ignoreAreasColoredWith: color,largeImageThreshold:0 })
         .onComplete(data => {
-            if (data.misMatchPercentage >= 0.5) {
+            if (data.misMatchPercentage >= percentage) {
                 console.log(filename);
-                console.log('差分を検知しました。');
+                console.log(`差分を検知しました。${data.misMatchPercentage}%`);
                 fs.writeFileSync("./diff_image/"+filename+".jpg", data.getBuffer());
             } else {
                 console.log(filename);
